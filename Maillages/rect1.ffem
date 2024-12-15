@@ -1,0 +1,9 @@
+// fichier rect1.ffem (FreeFem++)
+// =================================================
+// maillage structuré d’un rectangle:
+// =================================================
+real x0=0.0, y0=0.0;
+real L=4.0, l=2.0;
+mesh Th=square(15,4,[x0+L*x, y0+l*y]);
+plot(Th);
+savemesh(Th, "rectangle_4x2_struct.msh");   

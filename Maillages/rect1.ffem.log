@@ -1,0 +1,22 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\rect1.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier rect1.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage structuré d’un rectangle:
+    4 : // =================================================
+    5 : real x0=0.0, y0=0.0;
+ *** Warning  The identifier y0 hide a Global identifier
+ 
+    6 : real L=4.0, l=2.0;
+    7 : mesh Th=square(15,4,[x0+L*x, y0+l*y]);
+    8 : plot(Th);
+    9 : savemesh(Th, "rectangle_4x2_struct.msh"); sizestack + 1024 =1288  ( 264 )
+ 
+  -- Square mesh : nb vertices  =80 ,  nb triangles = 120 ,  nb boundary edges 38
+  number of required edges : 0
+times: compile 0.022s, execution 0.058s,  mpirank:0
+ ######## We forget of deleting   -1 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3443,  size :467832 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\rect1.ffem

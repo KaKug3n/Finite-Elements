@@ -1,0 +1,46 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\test_pacman.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // --> maillage en entree:
+    2 : mesh Th=readmesh("pacman.msh");
+    3 :
+    4 : // fonction de mon choix:
+    5 : func f=cos(x/2)*sin(y/2);
+    6 :
+    7 : fespace Xh(Th,P1); // :espace EF
+    8 : Xh fh=f;           // :fct fh(x,y) = interpolation P1 de f(x,y) sur Th
+    9 :
+   10 : // --> sorties graphiques MEDIT:
+   11 : load "medit"(load: loadLibary C:\Program Files (x86)\FreeFem++\\.\medit = 0);
+   12 : medit("Mon_Beau_Sinus",Th,fh); sizestack + 1024 =1976  ( 952 )
+ 
+  --  mesh:  Nb of Triangles =    310, Nb of Vertices 182
+version de medit ffmedit.exe -popen -filebin -addsol 1  Mon_Beau_Sinus
+  -- Medit,  Release 3.0a (Nov. 30, 2007)
+     Copyright (c) LJLL, 1999-2007.
+     compiled:  Fri, Apr 03, 2020 2:43:22 PM (with ff++ 4.6).
+ 
+medit with binary version of popen : mesh(es) and solution(s)
+mesh_name= Mon_Beau_Sinus
+ Loading data file(s)
+SolAtVertices nv=182
+End of mesh
+.sol: Dimension 2 (mesh)2 (lecture)1
+  Input seconds:     0.00
+ 
+ medit1()
+ 
+ Building scene(s)
+  Creating scene 1
+   Loading default options
+  Scene seconds:     0.47
+ 
+ Rendering scene(s)
+ 
+ Total running seconds:  103.66
+ Thank you for using Medit.
+times: compile 0.022s, execution 103.849s,  mpirank:0
+ ######## We forget of deleting   -3 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3455,  size :469344 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\test_pacman.ffem

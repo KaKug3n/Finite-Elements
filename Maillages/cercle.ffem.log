@@ -1,0 +1,35 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\cercle.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier cercle.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage structuré d’un cercle:
+    4 : // =================================================
+    5 :
+    6 : //Read mesh
+    7 :
+    8 : //maillage non-struct du cercle 2
+    9 : int Neu=2, Dir=1;
+   10 :
+   11 :
+   12 : //Construction du mesh
+   13 : border a(t=0, 2*pi){x=cos(t); y=sin(t); label=2;}
+   14 :
+   15 : //mesh
+   16 : mesh Th=buildmesh(
+   17 :     a(50)
+   18 : );
+   19 :
+   20 : //Affichage
+   21 : plot(Th);
+   22 :
+   23 : //Save
+   24 : savemesh(Th, "rectangle_non_struct.msh"); sizestack + 1024 =1288  ( 264 )
+ 
+  --  mesh:  Nb of Triangles =    438, Nb of Vertices 245
+  number of required edges : 0
+times: compile 0.026s, execution 0.006s,  mpirank:0
+ ######## We forget of deleting   -1 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3449,  size :468544 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\cercle.ffem

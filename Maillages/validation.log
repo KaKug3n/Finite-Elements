@@ -1,0 +1,58 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\validation.edp"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : //Tableau sauvegardant les eh pour chaqun des maillages (attention au -1 pour accéder au maillage correspondant)
+    2 : real[int] ehTab(4);
+    3 : for(int i = 1; i < 5; i++){
+    4 :     mesh Th = readmesh("../Maillages/m"+i+".msh"); //Emplacement à modifier pour correspondre aux maillages
+    5 :     int CodeDir = 1;
+    6 :     func u = 1.0  + sin(0.5 * pi * x) + x * (x - 4.0) * cos(0.5*pi*y); //solution exacte et donnée dans l'exo
+    7 :     func f = ((pi*pi)/4)*sin((pi*x)/2) + 2*cos((pi*y)/2) - x*(x-4)*((pi*pi)/4)*cos((pi*y)/2);
+    8 :     func uE = 1.0; //on le calcule grâce à u au plus haut x sur le maillage
+    9 :     fespace Vh(Th, P1); //espace d'élément fini (mesh, type d'élément fini) : Esp.EF - P1
+   10 :     Vh uh, vh; //inconnues delta fct test
+   11 :     problem PbLAPLACE(uh, vh, solver = Cholesky) = int2d(Th)(dx(uh)*dx(vh)+dy(uh)*dy(vh)) - int2d(Th)(f*vh) + on(CodeDir, uh = uE);
+   12 :     PbLAPLACE; // appel au solver EF => calcul de uh !
+   13 :     //calcul d'erreurs
+   14 :     varf b(uh, vh) = int2d(Th)(dx(uh)*dx(vh)+dy(uh)*dy(vh));//forme bilinéaire
+   15 :     matrix K = b(Vh, Vh); //matrice de rigidité
+   16 :     Vh KEh, Eh = u - uh;
+   17 :     KEh[] = K * Eh[];//vecteur derrière la fonction élément fini * matrice -> donne un vecteur[]
+   18 :     ehTab[i-1] = sqrt(Eh[]'*KEh[]);
+   19 :     cout << "eh = |u-uh|_H1 = " << ehTab[i-1] << endl;
+   20 :     //Calcul de la probablitité d'erreur pour les maillages au-dessus du 1er
+   21 :     if(i!=1){
+   22 :         real p = log(ehTab[i-2]/ehTab[i-1])/log(2.0);
+   23 :         cout << "p = log(e"<<i-1<<"/e"<<i<<")/ log(2) = " << p << endl;
+   24 :     }
+   25 :     plot(Th, uh, wait = 1);
+   26 : } sizestack + 1024 =6024  ( 5000 )
+ 
+  --  mesh:  Nb of Triangles =     32, Nb of Vertices 25
+  SkyLineMatrix: size pL/pU: 25 120 120 moy=4.8
+  -- Solve :
+          min -2.89337  max 4.89337
+eh = |u-uh|_H1 = 19.3711
+  --  mesh:  Nb of Triangles =    128, Nb of Vertices 81
+  SkyLineMatrix: size pL/pU: 81 720 720 moy=8.88889
+  -- Solve :
+          min -3.4034  max 5.4034
+eh = |u-uh|_H1 = 20.252
+p = log(e1/e2)/ log(2) = -0.0641588
+  --  mesh:  Nb of Triangles =    512, Nb of Vertices 289
+  SkyLineMatrix: size pL/pU: 289 4896 4896 moy=16.9412
+  -- Solve :
+          min -3.44353  max 5.44353
+eh = |u-uh|_H1 = 20.4738
+p = log(e2/e3)/ log(2) = -0.0157133
+  --  mesh:  Nb of Triangles =   2048, Nb of Vertices 1089
+  SkyLineMatrix: size pL/pU: 1089 35904 35904 moy=32.9697
+  -- Solve :
+          min -3.4537  max 5.4537
+eh = |u-uh|_H1 = 20.5294
+p = log(e3/e4)/ log(2) = -0.00391121
+times: compile 0.104s, execution 61.903s,  mpirank:0
+ ######## We forget of deleting   -12 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3694,  size :479240 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\validation.edp

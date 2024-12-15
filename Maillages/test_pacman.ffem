@@ -1,0 +1,12 @@
+// --> maillage en entree:
+mesh Th=readmesh("pacman.msh");  
+
+// fonction de mon choix:
+func f=cos(x/2)*sin(y/2);
+
+fespace Xh(Th,P1); // :espace EF
+Xh fh=f;           // :fct fh(x,y) = interpolation P1 de f(x,y) sur Th
+
+// --> sorties graphiques MEDIT:
+load "medit"; 
+medit("Mon_Beau_Sinus",Th,fh);

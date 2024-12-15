@@ -1,0 +1,46 @@
+// fichier triangle_cercle.ffem (FreeFem++)
+// =================================================
+// maillage non-structuré d’un tirangle percé d'un cercle:
+// =================================================
+real L = 3.95, h = 1.69;
+//Sommets caractéristiques des bords
+real x0 = 0.0, y0 = 0.0;
+real x1 = x0 + L/2.0, y1 = -1;
+real x2 = x0, y2= h;
+real x3 = x0 - L/2.0, y3 = -1;
+real rayon = 1;
+int Neu = 2, Dir = 1;
+
+//Paramètrage des bords
+border a(t = 0,1) {
+    x = x1 + t * (x2 - x1); 
+    y = y1 + t * (y2 - y1); 
+    label = Neu;
+};
+border b(t = 0,1) {
+    x = x2 + t * (x3 - x2); 
+    y = y2 + t * (y3 - y2); 
+    label = Neu;
+};
+border c(t = 0,1) {
+    x = x3 + t * (x1 - x3); 
+    y = y3 + t * (y1 - y3); 
+    label = Neu;
+};
+
+border d(t=0, 2*pi){x=cos(t); y=sin(t); label=rayon;};
+
+plot(a(10) + 
+    b(10) + 
+    c(10) + 
+    d(-100));
+
+mesh Th=buildmesh(
+    a(10) + 
+    b(10) + 
+    c(10) + 
+    d(-100)
+);
+    
+plot(Th);
+savemesh(Th, "triangle_cercle.msh");

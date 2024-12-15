@@ -1,0 +1,34 @@
+// --> maillage en entree:
+mesh Th=readmesh("m1.msh");  int codeDir=1;
+
+// fonction:
+func u=1+sin(pi*0.5*x)+x*(x-4.0)*cos(0.5*pi*y);
+func f=(- pi / 2) * x * (x - 4) * sin((pi / 2) * y);
+func uD=1.0;
+
+//traitement:
+fespace Vh(Th,P1); // :espace EF
+
+Vh uh,vh;          //:inconnue et la fonction test
+problem PbLAPALCE(uh,vh)
+        =int2d(Th)(dx(uh)*dx(vh)+dy(uh)*dy(vh))
+        -int2d(Th)(f*vh)
+        +on(codeDir,uh=uD);
+
+PbLAPALCE; //=> calcul de uh !
+
+// --> sorties graphiques MEDIT:
+varf b(uh,vh)=int2d(Th)(dx(uh)*dx(vh)+dy(uh)*dy(vh));
+matrix K=b(Vh,Vh);
+Vh Eh=u-uh, KEh;
+KEh[]=K*Eh[];
+real eh=sqrt(Eh[]'*KEh[]);
+
+cout << "eh=" << eh << endl;
+
+
+plot(Th,uh);
+
+//le theoreme prevoir:
+//lh=C*h puiss(p) ~=C indep de h
+//(1) lh=

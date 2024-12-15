@@ -1,0 +1,53 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_structrect.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier rect1.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage structuré d’un rectangle:
+    4 : // =================================================
+    5 :
+    6 : //Read mesh
+    7 :
+    8 : //maillage non-struct du rectangle ]0,4[x]0,2[
+    9 : real L=4.0, l=2.0;
+   10 : int Neu=2, Dir=1;
+   11 :
+   12 : //Sommets caractéritique des bords:
+   13 : real x0=0.0, y0=0.0;
+ *** Warning  The identifier y0 hide a Global identifier
+ 
+   14 : real x1=2.0, y1=0.0;
+ *** Warning  The identifier y1 hide a Global identifier
+ 
+   15 : real x2=2.0, y2=2.0;
+   16 : real x3=0.0, y3=2.0;
+   17 : real x4=x0, y4=y0;
+   18 :
+   19 :
+   20 : //Construction du mesh
+   21 : border a (t=0,1){x=x0+t*(x1-x0);y=y0+t*(y1-y0);label=2;};
+   22 : border b (t=0,1){x=x1+t*(x2-x1);y=y1+t*(y2-y1);label=2;};
+   23 : border c (t=0,1){x=x2+t*(x3-x2);y=y2+t*(y3-y2);label=2;};
+   24 : border d (t=0,1){x=x3+t*(x4-x3);y=y3+t*(y4-y3);label=2;};
+   25 :
+   26 : //mesh
+   27 : mesh Th=buildmesh(
+   28 :      a(3)
+   29 :     +b(2)
+   30 :     +c(4)
+   31 :     +d(3)
+   32 : );
+   33 :
+   34 : //Affichage
+   35 : plot(Th);
+   36 :
+   37 : //Save
+   38 : savemesh(Th, "rectangle_non_struct.msh"); sizestack + 1024 =1432  ( 408 )
+ 
+  --  mesh:  Nb of Triangles =     20, Nb of Vertices 17
+  number of required edges : 0
+times: compile 0.082s, execution 0.018s,  mpirank:0
+ ######## We forget of deleting   -1 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3612,  size :474176 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_structrect.ffem

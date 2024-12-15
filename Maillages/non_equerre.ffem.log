@@ -1,0 +1,62 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_equerre.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier rect1.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage structuré d’un transistor:
+    4 : // =================================================
+    5 :
+    6 : //Read mesh
+    7 :
+    8 : //maillage non-struct du rectangle ]0,4[x]0,2[
+    9 : real L=4.0, l=2.0;
+   10 : int Neu=2, Dir=1;
+   11 :
+   12 : //Sommets caractéritique des bords:
+   13 : real x0=0.0, y0=0.0;
+ *** Warning  The identifier y0 hide a Global identifier
+ 
+   14 : real x1=2.0, y1=0.0;
+ *** Warning  The identifier y1 hide a Global identifier
+ 
+   15 : real x2=2.0, y2=1.0;
+   16 : real x3=1.4, y3=1.0;
+   17 : real x4=1.0, y4=1.4;
+   18 : real x5=1.0, y5=2.0;
+   19 : real x6=0.0, y6=2.0;
+   20 : real x7=x0, y7=y0;
+   21 :
+   22 :
+   23 : //Construction du mesh
+   24 : border a (t=0,1){x=x0+t*(x1-x0);y=y0+t*(y1-y0);label=2;};
+   25 : border b (t=0,1){x=x1+t*(x2-x1);y=y1+t*(y2-y1);label=2;};
+   26 : border c (t=0,1){x=x2+t*(x3-x2);y=y2+t*(y3-y2);label=2;};
+   27 : border d (t=0,1){x=x3+t*(x4-x3);y=y3+t*(y4-y3);label=2;};
+   28 : border e (t=0,1){x=x4+t*(x5-x4);y=y4+t*(y5-y4);label=2;};
+   29 : border f (t=0,1){x=x5+t*(x6-x5);y=y5+t*(y6-y5);label=2;};
+   30 : border g (t=0,1){x=x6+t*(x7-x6);y=y6+t*(y7-y6);label=2;};
+   31 :
+   32 : //mesh
+   33 : mesh Th=buildmesh(
+   34 :      a(10)
+   35 :     +b(5)
+   36 :     +c(5)
+   37 :     +d(5)
+   38 :     +e(5)
+   39 :     +f(10)
+   40 :     +g(5)
+   41 : );
+   42 :
+   43 : //Affichage
+   44 : plot(Th);
+   45 :
+   46 : //Save
+   47 : savemesh(Th, "rectangle_non_struct.msh"); sizestack + 1024 =1528  ( 504 )
+ 
+  --  mesh:  Nb of Triangles =    213, Nb of Vertices 130
+  number of required edges : 0
+times: compile 0.054s, execution 0.007s,  mpirank:0
+ ######## We forget of deleting   -1 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3744,  size :479048 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_equerre.ffem

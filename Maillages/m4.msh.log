@@ -1,0 +1,13 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\m4.msh"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : 1089  2048
+ Error line number 1, in file C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\m4.msh, before  toke0ýln 2048
+syntax error
+  current line = 1
+Compile error : syntax error
+        line number :1, 2048
+error Compile error : syntax error
+        line number :1, 2048
+ code = 1 mpirank: 0
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\m4.msh

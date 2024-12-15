@@ -1,0 +1,24 @@
+// fichier cercle.ffem (FreeFem++)
+// =================================================
+// maillage structuré d’un cercle:
+// =================================================
+
+//Read mesh
+
+//maillage non-struct du cercle 2
+int Neu=2, Dir=1;
+
+
+//Construction du mesh
+border a(t=0, 2*pi){x=cos(t); y=sin(t); label=2;}
+
+//mesh
+mesh Th=buildmesh(
+    a(50)
+);
+
+//Affichage
+plot(Th);
+
+//Save
+savemesh(Th, "rectangle_non_struct.msh");

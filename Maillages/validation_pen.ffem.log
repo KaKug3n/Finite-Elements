@@ -1,0 +1,91 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\validation_pen.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // Chargement du maillage
+    2 : mesh Th = readmesh("m1.msh");
+    3 : int codeDir = 1;
+    4 : int alpha = 1000;  // Coefficient de p√©nalisation
+    5 :
+    6 : // D√©finition des fonctions
+    7 : func u = 1 + sin(pi*0.5*x) + x*(x-4.0)*cos(0.5*pi*y);
+    8 : func f = ((pi * pi)/4) * sin((pi/2)*x) + cos((pi/2)*y)*(-2 + ((pi*pi)/4)*x*(x-4));
+    9 : func uD = 1.0;  // Condition de Dirichlet
+   10 :
+   11 : // Espace des fonctions (P1)
+   12 : fespace Vh(Th, P1);
+   13 :
+   14 : // Inconnue et fonction test
+   15 : Vh uh, vh;
+   16 :
+   17 : // Probl√®me variationnel : r√©solution de l'√©quation de Poisson
+   18 : problem PbLAPLACE(uh, vh) =
+   19 :     int2d(Th)(dx(uh)*dx(vh) + dy(uh)*dy(vh))    // Terme de diffusion
+   20 :   - int2d(Th)(f*vh)                             // Terme source
+   21 :   + int1d(Th, codeDir)(alpha*(uh - uD) error operator -  <10LinearCombI7MGauche4C_F0E>, <d>
+ List of choices
+         (        <l> :   <l>, <l> )
+         (        <NSt7__cxx114listISt5tupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE> :   <NSt7__cxx114listISt5êÂÒtupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE> )
+         (        <NSt7__cxx114listISt5tupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE> :   <14Matrice_CreuseISt7êÂÒcomplexIdEE>, <14Matrice_CreuseISt7complexIdEE> )
+         (        <NSt7__cxx114listISt5tupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE> :   <14Matrice_CreuseISt7êÂÒcomplexIdEE>, <NSt7__cxx114listISt5tupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE> )
+         (        <NSt7__cxx114listISt5tupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE> :   <NSt7__cxx114listISt5êÂÒtupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE>, <14Matrice_CreuseISt7complexIdEE> )
+         (        <NSt7__cxx114listISt5tupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE> :   <NSt7__cxx114listISt5êÂÒtupleIJSt7complexIdEP13VirtualMatrixIiS3_EbEESaIS7_EEE>, <NSt7__cxx114listISt5tupleIJSt7complexIdEP13VirtualMatrixIiS3_EêÂÒbEESaIS7_EEE> )
+         (        <NSt7__cxx114listISt5tupleIJdP13VirtualMatrixIidEbEESaIS5_EEE> :   <NSt7__cxx114listISt5tupleIJdP13VirêÂÒtualMatrixIidEbEESaIS5_EEE> )
+         (        <NSt7__cxx114listISt5tupleIJdP13VirtualMatrixIidEbEESaIS5_EEE> :   <14Matrice_CreuseIdE>, <14Matrice_CêÂÒreuseIdE> )
+         (        <NSt7__cxx114listISt5tupleIJdP13VirtualMatrixIidEbEESaIS5_EEE> :   <14Matrice_CreuseIdE>, <NSt7__cxx11êÂÒ4listISt5tupleIJdP13VirtualMatrixIidEbEESaIS5_EEE> )
+         (        <NSt7__cxx114listISt5tupleIJdP13VirtualMatrixIidEbEESaIS5_EEE> :   <NSt7__cxx114listISt5tupleIJdP13VirêÂÒtualMatrixIidEbEESaIS5_EEE>, <14Matrice_CreuseIdE> )
+         (        <NSt7__cxx114listISt5tupleIJdP13VirtualMatrixIidEbEESaIS5_EEE> :   <NSt7__cxx114listISt5tupleIJdP13VirêÂÒtualMatrixIidEbEESaIS5_EEE>, <NSt7__cxx114listISt5tupleIJdP13VirtualMatrixIidEbEESaIS5_EEE> )
+         (        <10FormLinear> :   <10FormLinear> )
+         (        <12FormBilinear> :   <12FormBilinear> )
+         (        <6C_args> :   <6C_args>, <10FormLinear> )
+         (        <6C_args> :   <6C_args>, <12FormBilinear> )
+         (        <10LinearCombI7MGauche4C_F0E> :   <10LinearCombI7MGauche4C_F0E>, <10LinearCombI7MGauche4C_F0E> )
+         (        <10LinearCombI6MDroit4C_F0E> :   <10LinearCombI6MDroit4C_F0E>, <10LinearCombI6MDroit4C_F0E> )
+         (        <10LinearCombISt4pairI7MGauche6MDroitE4C_F0E> :   <10LinearCombISt4pairI7MGauche6MDroitE4C_F0E>, <10LiêÂÒnearCombISt4pairI7MGauche6MDroitE4C_F0E> )
+         (        <10LinearCombI7MGauche4C_F0E> :   <10LinearCombI7MGauche4C_F0E> )
+         (        <10LinearCombI6MDroit4C_F0E> :   <10LinearCombI6MDroit4C_F0E> )
+         (        <10LinearCombISt4pairI7MGauche6MDroitE4C_F0E> :   <10LinearCombISt4pairI7MGauche6MDroitE4C_F0E> )
+         (        <4C_F0> :   <12TransE_Array>, <12TransE_Array> )
+         (        <4C_F0> :   <7E_Array>, <12TransE_Array> )
+         (        <4C_F0> :   <7E_Array>, <7E_Array> )
+         (        <4C_F0> :   <12TransE_Array>, <7E_Array> )
+         (        <12Add_Mulc_KN_ISt7complexIdEE> :   <8Mulc_KN_ISt7complexIdEE>, <3KN_ISt7complexIdEE> )
+         (        <12Add_Mulc_KN_ISt7complexIdEE> :   <3KN_ISt7complexIdEE>, <8Mulc_KN_ISt7complexIdEE> )
+         (        <12Add_Mulc_KN_ISt7complexIdEE> :   <8Mulc_KN_ISt7complexIdEE>, <8Mulc_KN_ISt7complexIdEE> )
+         (        <8Mulc_KN_ISt7complexIdEE> :   <3KN_ISt7complexIdEE> )
+         (        <7Sub_KN_ISt7complexIdEE> :   <3KN_ISt7complexIdEE>, <3KN_ISt7complexIdEE> )
+         (        <12Add_Mulc_KN_IdE> :   <8Mulc_KN_IdE>, <3KN_IdE> )
+         (        <12Add_Mulc_KN_IdE> :   <3KN_IdE>, <8Mulc_KN_IdE> )
+         (        <12Add_Mulc_KN_IdE> :   <8Mulc_KN_IdE>, <8Mulc_KN_IdE> )
+         (        <8Mulc_KN_IdE> :   <3KN_IdE> )
+         (        <7Sub_KN_IdE> :   <3KN_IdE>, <3KN_IdE> )
+         (        <12Add_Mulc_KN_IlE> :   <8Mulc_KN_IlE>, <3KN_IlE> )
+         (        <12Add_Mulc_KN_IlE> :   <3KN_IlE>, <8Mulc_KN_IlE> )
+         (        <12Add_Mulc_KN_IlE> :   <8Mulc_KN_IlE>, <8Mulc_KN_IlE> )
+         (        <8Mulc_KN_IlE> :   <3KN_IlE> )
+         (        <7Sub_KN_IlE> :   <3KN_IlE>, <3KN_IlE> )
+         (        <St7complexIdE> :   <St7complexIdE> )
+         (        <l> :   <l> )
+         (        <d> :   <d> )
+         (        <St7complexIdE> :   <b>, <St7complexIdE> )
+         (        <St7complexIdE> :   <St7complexIdE>, <b> )
+         (        <St7complexIdE> :   <l>, <St7complexIdE> )
+         (        <St7complexIdE> :   <St7complexIdE>, <l> )
+         (        <St7complexIdE> :   <d>, <St7complexIdE> )
+         (        <St7complexIdE> :   <St7complexIdE>, <d> )
+         (        <St7complexIdE> :   <St7complexIdE>, <St7complexIdE> )
+         (        <l> :   <b>, <l> )
+         (        <l> :   <l>, <b> )
+         (        <l> :   <b>, <b> )
+         (        <d> :   <l>, <d> )
+         (        <d> :   <d>, <l> )
+         (        <d> :   <d>, <d> )
+ 
+ Error line number 21, in file C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\validation_pen.ffemêÂÒ, before  token )
+ 
+  current line = 21
+Compile error :
+        line number :21, )
+error Compile error :
+        line number :21, )
+ code = 1 mpirank: 0
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\validation_pen.ffem

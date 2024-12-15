@@ -1,0 +1,36 @@
+// fichier rect1.ffem (FreeFem++)
+// =================================================
+// maillage structuré d’un rectangle:
+// =================================================
+
+real L=4.0, l=2.0;
+int Neu=2, Dir=1;
+
+//Sommets caractéritique des bords:
+real x0=0.0, y0=0.0;
+real x1=2.0, y1=0.0;
+real x2=1.0, y2=2.0;
+real x3=x0, y3=y0;
+
+
+//Construction du mesh
+border a (t=0,1){x=x0+t*(x1-x0);y=y0+t*(y1-y0);label=2;};
+border b (t=0,1){x=x1+t*(x2-x1);y=y1+t*(y2-y1);label=2;};
+border c (t=0,1){x=x2+t*(x3-x2);y=y2+t*(y3-y2);label=2;};
+
+border cercle(t=0, 2*pi){x=1+0.3*cos(t); y=1+0.3*sin(t); label=1;};
+
+//mesh
+mesh Th=buildmesh(
+     a(20)
+    +b(20)
+    +c(20)
+    +cercle(-20)
+);
+
+//Affichage
+plot(Th);
+
+
+//Save
+savemesh(Th, "tri_trou.msh");

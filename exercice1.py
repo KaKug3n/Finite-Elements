@@ -132,7 +132,7 @@ def pas_et_qualite_tri(n1,n2,n3):
     const=np.sqrt(3)/6
 
     a=longueur(n1,n2)
-    b=longueur(n2,n3)
+    b=longueur(n2,n2)
     c=longueur(n1,n3)
     r=calc_cercle_inscrit(a,b,c)
  
@@ -146,30 +146,27 @@ def pas_et_qualite_maillage(nbn,coord,tri):
     maxpas=0
     QT=0
     for i in range(0,nbn):
-        n1=[coord[tri[i-1,0]-1,0],coord[tri[i-1,0]-1,1]]
-        n2=[coord[tri[i-1,1]-1,0],coord[tri[i-1,1]-1,1]]
-        n3=[coord[tri[i-1,2]-1,0],coord[tri[i-1,2]-1,1]]
-        [tmpmaxpass,tmpQT]=pas_et_qualite_tri(n1,n2,n3)
+        [tmpQT,tmpmaxpass]=pas_et_qualite_tri([coord[tri[i,0],0],coord[tri[i,0],1]],[coord[tri[i,1],0],coord[tri[i,1],1]],[coord[tri[i,2],0],coord[tri[i,2],1]])
 
         if maxpas<tmpmaxpass:
             maxpas=tmpmaxpass
         if QT<tmpQT:
             QT=tmpQT
 
-    return [maxpas,QT]
+    return [QT,maxpas]
 
 
 def charge_et_affiche_maillage(FichierMaillage):
 
     [nbn,nbe,nba,coord,tri,ar,refn,reft,refa]=lit_fichier_msh(FichierMaillage)
 
-    [pas,QT]=pas_et_qualite_maillage(nbn,coord,tri)
-    print("pas: "+str(pas)+" et qualite: "+str(QT))
+    
+    print(pas_et_qualite_maillage(nbn,coord,tri))
     
     trace_maillage_ref(nbn,nbe,nba,coord,tri,ar,refn,reft,refa)
     
 
-FichierMaillage="C:\\Users\\Kakugen\\Desktop\\CHPS0706\\tp1\\Maillages\\m0.msh" # :nom du fichier de maillage
+FichierMaillage="C:\\Users\\Kakugen\\Desktop\\CHPS706\\Finite-Elements-main\\Maillages\\m1.msh" # :nom du fichier de maillage
 
 charge_et_affiche_maillage(FichierMaillage)
 

@@ -1,0 +1,61 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\tiangl_cerleInsc.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier triangle_cercle.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage non-structuré d’un tirangle percé d'un cercle:
+    4 : // =================================================
+    5 : real L = 3.95, h = 1.69;
+    6 : //Sommets caractéristiques des bords
+    7 : real x0 = 0.0, y0 = 0.0;
+ *** Warning  The identifier y0 hide a Global identifier
+ 
+    8 : real x1 = x0 + L/2.0, y1 = -1;
+ *** Warning  The identifier y1 hide a Global identifier
+ 
+    9 : real x2 = x0, y2= h;
+   10 : real x3 = x0 - L/2.0, y3 = -1;
+   11 : real rayon = 1;
+   12 : int Neu = 2, Dir = 1;
+   13 :
+   14 : //Paramètrage des bords
+   15 : border a(t = 0,1) {
+   16 :     x = x1 + t * (x2 - x1);
+   17 :     y = y1 + t * (y2 - y1);
+   18 :     label = Neu;
+   19 : };
+   20 : border b(t = 0,1) {
+   21 :     x = x2 + t * (x3 - x2);
+   22 :     y = y2 + t * (y3 - y2);
+   23 :     label = Neu;
+   24 : };
+   25 : border c(t = 0,1) {
+   26 :     x = x3 + t * (x1 - x3);
+   27 :     y = y3 + t * (y1 - y3);
+   28 :     label = Neu;
+   29 : };
+   30 :
+   31 : border d(t=0, 2*pi){x=cos(t); y=sin(t); label=rayon;};
+   32 :
+   33 : plot(a(10) +
+   34 :     b(10) +
+   35 :     c(10) +
+   36 :     d(-100));
+   37 :
+   38 : mesh Th=buildmesh(
+   39 :     a(10) +
+   40 :     b(10) +
+   41 :     c(10) +
+   42 :     d(-100)
+   43 : );
+   44 :
+   45 : plot(Th);
+   46 : savemesh(Th, "triangle_cercle.msh"); sizestack + 1024 =1424  ( 400 )
+ 
+  --  mesh:  Nb of Triangles =    205, Nb of Vertices 167
+  number of required edges : 0
+times: compile 0.099s, execution 0.322s,  mpirank:0
+ ######## We forget of deleting   -1 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3626,  size :474984 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\tiangl_cerleInsc.ffem

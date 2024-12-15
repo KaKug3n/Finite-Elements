@@ -1,0 +1,48 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_tri_diff.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier rect1.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage structuré d’un rectangle:
+    4 : // =================================================
+    5 :
+    6 : real L=4.0, l=2.0;
+    7 : int Neu=2, Dir=1;
+    8 :
+    9 : //Sommets caractéritique des bords:
+   10 : real x0=0.0, y0=0.0;
+ *** Warning  The identifier y0 hide a Global identifier
+ 
+   11 : real x1=2.0, y1=0.0;
+ *** Warning  The identifier y1 hide a Global identifier
+ 
+   12 : real x2=1.0, y2=2.0;
+   13 : real x3=x0, y3=y0;
+   14 :
+   15 :
+   16 : //Construction du mesh
+   17 : border a (t=0,1){x=x0+t*(x1-x0);y=y0+t*(y1-y0);label=2;};
+   18 : border b (t=0,1){x=x1+t*(x2-x1);y=y1+t*(y2-y1);label=2;};
+   19 : border c (t=0,1){x=x2+t*(x3-x2);y=y2+t*(y3-y2);label=2;};
+   20 :
+   21 : border cercle(t=0, 2*pi){x=1+0.3*cos(t); y=1+0.3*sin(t); label=1;};
+   22 :
+   23 : //mesh
+   24 : mesh Th=buildmesh(
+   25 :      a(20)
+   26 :     +b(20)
+   27 :     +c(20)
+   28 :     +cercle(-20)
+   29 : );
+   30 :
+   31 :
+   32 :
+   33 : //Save
+   34 : savemesh(Th, "tri_trou.msh"); sizestack + 1024 =1416  ( 392 )
+ 
+  --  mesh:  Nb of Triangles =    374, Nb of Vertices 227
+  number of required edges : 0
+times: compile 0.082s, execution 0.011s,  mpirank:0
+ CodeAlloc : nb ptr  3602,  size :473504 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_tri_diff.ffem

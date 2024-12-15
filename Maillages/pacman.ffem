@@ -1,0 +1,43 @@
+// fichier triangle_cercle.ffem (FreeFem++)
+// =================================================
+// maillage non-structuré d’un pacman:
+// =================================================
+
+// fonction de mon choix:
+func f=sin(2*pi/7*x+2*pi/7*y);
+
+real L = 3.95, h = 1.69;
+//Sommets caractéristiques des bords
+real dAg = 0.6;
+int Neu = 2, Dir = 1;
+
+//Paramètrage des bords
+border cercle(t = dAg,2*pi-dAg) {
+    x =cos(t);
+    y =sin(t);
+};
+border petitCercle(t = 0,2*pi) {
+    x =0.1*cos(t); 
+    y =0.5+ 0.1*sin(t); 
+};
+border seg1(t = 0,1) {
+    x = (1-t)*cos(2*pi-dAg); 
+    y = (1-t)*sin(2*pi-dAg); 
+};
+border seg2(t = 0,1) {
+    x = t*cos(dAg); 
+    y = t*sin(dAg); 
+
+};
+
+
+mesh Th=buildmesh(
+ cercle(30)
+ +seg1(8)
+ +seg2(8)
+ +petitCercle(-8)
+
+);
+    
+plot(Th);
+savemesh(Th, "pacman.msh");

@@ -1,0 +1,47 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\validation.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // --> maillage en entree:
+    2 : mesh Th=readmesh("m1.msh");  int codeDir=1;
+    3 :
+    4 : // fonction:
+    5 : func u=1+sin(pi*0.5*x)+x*(x-4.0)*cos(0.5*pi*y);
+    6 : func f=(- pi / 2) * x * (x - 4) * sin((pi / 2) * y);
+    7 : func uD=1.0;
+    8 :
+    9 : //traitement:
+   10 : fespace Vh(Th,P1); // :espace EF
+   11 :
+   12 : Vh uh,vh;          //:inconnue et la fonction test
+   13 : problem PbLAPALCE(uh,vh)
+   14 :         =int2d(Th)(dx(uh)*dx(vh)+dy(uh)*dy(vh))
+   15 :         -int2d(Th)(f*vh)
+   16 :         +on(codeDir,uh=uD);
+   17 :
+   18 : PbLAPALCE; //=> calcul de uh !
+   19 :
+   20 : // --> sorties graphiques MEDIT:
+   21 : varf b(uh,vh)=int2d(Th)(dx(uh)*dx(vh)+dy(uh)*dy(vh));
+   22 : matrix K=b(Vh,Vh);
+   23 : Vh Eh=u-uh, KEh;
+   24 : KEh[]=K*Eh[];
+   25 : real eh=sqrt(Eh[]'*KEh[]);
+   26 :
+   27 : cout << "eh=" << eh << endl;
+   28 :
+   29 :
+   30 : plot(Th,uh);
+   31 :
+   32 : //le theoreme prevoir:
+   33 : //lh=C*h puiss(p) ~=C indep de h
+   34 : //(1) lh=ÿ sizestack + 1024 =4792  ( 3768 )
+ 
+  --  mesh:  Nb of Triangles =     32, Nb of Vertices 25
+  -- Solve :
+          min 1  max 7.89974
+eh=14.619
+times: compile 0.07s, execution 0.01s,  mpirank:0
+ ######## We forget of deleting   -1 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3591,  size :476544 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\validation.ffem

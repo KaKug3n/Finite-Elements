@@ -1,0 +1,58 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_carre-trou.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier rect1.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage structuré d’un rectangle:
+    4 : // =================================================
+    5 :
+    6 : //Read mesh
+    7 :
+    8 : //maillage non-struct du rectangle ]0,4[x]0,2[
+    9 : real L=4.0, l=2.0;
+   10 : int Neu=2, Dir=1;
+   11 :
+   12 : //Sommets caractéritique des bords:
+   13 : real x0=0.0, y0=0.0;
+ *** Warning  The identifier y0 hide a Global identifier
+ 
+   14 : real x1=2.0, y1=0.0;
+ *** Warning  The identifier y1 hide a Global identifier
+ 
+   15 : real x2=2.0, y2=2.0;
+   16 : real x3=0.0, y3=2.0;
+   17 : real x4=x0, y4=y0;
+   18 :
+   19 :
+   20 : //Construction du mesh
+   21 : border a (t=0,1){x=x0+t*(x1-x0);y=y0+t*(y1-y0);label=2;};
+   22 : border b (t=0,1){x=x1+t*(x2-x1);y=y1+t*(y2-y1);label=2;};
+   23 : border c (t=0,1){x=x2+t*(x3-x2);y=y2+t*(y3-y2);label=2;};
+   24 : border d (t=0,1){x=x3+t*(x4-x3);y=y3+t*(y4-y3);label=2;};
+   25 :
+   26 : border cercle(t=0, 2*pi){x=1+0.3*cos(t); y=1+0.3*sin(t); label=1;};
+   27 :
+   28 :
+   29 : //mesh
+   30 : mesh Th=buildmesh(
+   31 :      a(20)
+   32 :     +b(20)
+   33 :     +c(20)
+   34 :     +d(20)
+   35 :
+   36 :     +cercle(-20)
+   37 : );
+   38 :
+   39 : //Affichage
+   40 : plot(Th);
+   41 :
+   42 : //Save
+   43 : savemesh(Th, "rectangle_trou.msh"); sizestack + 1024 =1448  ( 424 )
+ 
+  --  mesh:  Nb of Triangles =    866, Nb of Vertices 483
+  number of required edges : 0
+times: compile 0.107s, execution 0.021s,  mpirank:0
+ ######## We forget of deleting   -1 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  3648,  size :475568 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\non_carre-trou.ffem

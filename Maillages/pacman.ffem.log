@@ -1,0 +1,49 @@
+You chose the file "C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\pacman.ffem"
+-- FreeFem++ v4.6 (Fri, Apr 03, 2020  2:08:08 PM - git v4.6)
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier triangle_cercle.ffem (FreeFem++)
+    2 : // =================================================
+    3 : // maillage non-structuré d’un pacman:
+    4 : // =================================================
+    5 : real L = 3.95, h = 1.69;
+    6 : //Sommets caractéristiques des bords
+    7 : real dAg = 0.6;
+    8 : int Neu = 2, Dir = 1;
+    9 :
+   10 : //Paramètrage des bords
+   11 : border cercle(t = dAg,2*pi-dAg) {
+   12 :     x =cos(t);
+   13 :     y =sin(t);
+   14 : };
+   15 : border petitCercle(t = 0,2*pi) {
+   16 :     x =0.1*cos(t);
+   17 :     y =0.5+ 0.1*sin(t);
+   18 : };
+   19 : border seg1(t = 0,1) {
+   20 :     x = (1-t)*cos(2*pi-dAg);
+   21 :     y = (1-t)*sin(2*pi-dAg);
+   22 : };
+   23 : border seg2(t = 0,1) {
+   24 :     x = t*cos(dAg);
+   25 :     y = t*sin(dAg);
+   26 :
+   27 : };
+   28 :
+   29 :
+   30 : mesh Th=buildmesh(
+   31 :  cercle(30)
+   32 :  +seg1(8)
+   33 :  +seg2(8)
+   34 :  +petitCercle(-8)
+   35 :
+   36 : );
+   37 :
+   38 : plot(Th);
+   39 : savemesh(Th, "pacman.msh"); sizestack + 1024 =1360  ( 336 )
+ 
+  --  mesh:  Nb of Triangles =    310, Nb of Vertices 182
+  number of required edges : 0
+times: compile 0.038s, execution 0.009s,  mpirank:0
+ CodeAlloc : nb ptr  3558,  size :472840 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\retio\OneDrive\Bureau\CHPS706\Finite-Elements-main\Maillages\pacman.ffem
