@@ -1,0 +1,73 @@
+// fichier house1 (FreeFem++)
+// =================================================
+// maillage structuré d’une maison avec des fenetres:
+// =================================================
+
+//Read mesh
+
+//Cond
+int Neu=2, Dir=1;
+real L=12.0, H=3.0;
+
+//Sommets caractéritique des bords:
+//r0
+real x0=0.0, y0=0.0;
+real x1=L, y1=0.0;
+real x2=L, y2=H;
+
+//fb => fenetre bord
+real fb1x=L, fb1y=H/2;
+real fb2x=L, fb2y=H/2+1.0;
+
+real x3=0.0, y3=H;
+real x4=x0, y4=y0;
+
+//fb => fenetre bord
+real fb3x=0, fb3y=H/2+1.0;
+real fb4x=0, fb4y=H/2;
+
+//r1
+real x5=L/2, y5=2*H;
+
+
+//Construction du mesh
+border a (t=0,1){x=x0+t*(x1-x0);y=y0+t*(y1-y0);label=2;};
+border b (t=0,1){x=x1+t*(fb1x-x1);y=y1+t*(fb1y-y1);label=2;};
+
+//fenetre1
+border c (t=0,1){x=fb1x+t*(fb2x-fb1x);y=fb1y+t*(fb2y-fb1y);label=1;};
+
+border d (t=0,1){x=fb2x+t*(x2-fb2x);y=fb2y+t*(y2-fb2y);label=2;};
+border e (t=0,1){x=x2+t*(x3-x2);y=y2+t*(y3-y2);label=2;};
+border f (t=0,1){x=x3+t*(fb3x-x3);y=y3+t*(fb3y-y3);label=2;};
+
+//fenetre2
+border g (t=0,1){x=fb3x+t*(fb4x-fb3x);y=fb3y+t*(fb4y-fb3y);label=1;};
+
+border h (t=0,1){x=fb4x+t*(x4-fb4x);y=fb4y+t*(y4-fb4y);label=2;};
+
+//toit
+border i (t=0,1){x=x2+t*(x5-x2);y=y2+t*(y5-y2);label=2;};
+border j (t=0,1){x=x5+t*(x3-x5);y=y5+t*(y3-y5);label=2;};
+
+
+
+//mesh
+mesh Th=buildmesh(
+     a(20)
+    +b(20)
+    +c(20)
+    +d(20)
+    +e(20)
+    +f(20)
+    +g(20)
+    +h(20)
+    +i(20)
+    +j(20)
+);
+
+//Affichage
+plot(Th);
+
+//Save
+savemesh(Th, "house1.msh");

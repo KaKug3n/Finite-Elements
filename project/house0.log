@@ -1,0 +1,65 @@
+-- FreeFem++ v4.15 (Wed Dec 11 16:48:56 CET 2024 - git v4.15-7-gb1e524c8c)
+   file : C:\Users\Kakugen\Desktop\CHPS0706\project\house0.edp
+ Load: lg_fem lg_mesh lg_mesh3 eigenvalue
+    1 : // fichier house1 (FreeFem++)
+    2 : // =================================================
+    3 : // maillage structuré d’une maison simple:
+    4 : // =================================================
+    5 :
+    6 : //Read mesh
+    7 :
+    8 : //Cond
+    9 : int Neu=2, Dir=1;
+   10 : real L=12.0, h=3.0;
+   11 :
+   12 : //Sommets caractéritique des bords:
+   13 : //r0
+   14 : real x0=0.0, y0=0.0;
+ *** Warning  The identifier y0 hide a Global identifier
+ 
+   15 : real x1=L, y1=0.0;
+ *** Warning  The identifier y1 hide a Global identifier
+ 
+   16 : real x2=L, y2=h;
+   17 : real x3=0.0, y3=h;
+   18 : real x4=x0, y4=y0;
+   19 :
+   20 : //r1
+   21 : real x5=L/2, y5=2*h;
+   22 :
+   23 :
+   24 : //Construction du mesh
+   25 : border a (t=0,1){x=x0+t*(x1-x0);y=y0+t*(y1-y0);label=2;};
+   26 : border b (t=0,1){x=x1+t*(x2-x1);y=y1+t*(y2-y1);label=2;};
+   27 : border c (t=0,1){x=x2+t*(x3-x2);y=y2+t*(y3-y2);label=2;};
+   28 : border d (t=0,1){x=x3+t*(x4-x3);y=y3+t*(y4-y3);label=2;};
+   29 :
+   30 : border e (t=0,1){x=x2+t*(x5-x2);y=y2+t*(y5-y2);label=2;};
+   31 : border f (t=0,1){x=x5+t*(x3-x5);y=y5+t*(y3-y5);label=2;};
+   32 :
+   33 :
+   34 :
+   35 : //mesh
+   36 : mesh Th=buildmesh(
+   37 :      a(20)
+   38 :     +b(20)
+   39 :     +c(20)
+   40 :     +d(20)
+   41 :
+   42 :     +e(20)
+   43 :     +f(20)
+   44 : );
+   45 :
+   46 : //Affichage
+   47 : plot(Th);
+   48 :
+   49 : //Save
+   50 : savemesh(Th, "houseBase.msh"); sizestack + 1024 =1480  ( 456 )
+ 
+  --  mesh:  Nb of Triangles =    569, Nb of Vertices 335
+  number of required edges : 0
+times: compile 0.048s, execution 0.014s,  mpirank:0
+ ######## unfreed pointers   33 Nb pointer,   0Bytes  ,  mpirank 0, memory leak =0
+ CodeAlloc : nb ptr  4167,  size :538344 mpirank: 0
+Ok: Normal End
+ try getConsole C:\Users\Kakugen\Desktop\CHPS0706\project\house0.edp

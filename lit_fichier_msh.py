@@ -168,7 +168,7 @@ def pas_et_qualite_maillage(coord, trian):
 
     return h_max, Q_h_max
 
-FichierMaillage = "C:\\Users\\retio\\OneDrive\\Bureau\\CHPS706\\Finite-Elements-main\\Maillages\\m1.msh"
+FichierMaillage = "C:\\Users\\Kakugen\\Desktop\\CHPS0706\\Finite-Elements\\Maillages\\m1.msh"
 nbn, nbe, nba, coord, trian, ar, refn, reft, refa = lit_fichier_msh(FichierMaillage)
 
 h_max, Q_h_max = pas_et_qualite_maillage(coord, trian)

@@ -224,7 +224,7 @@ def assemblage_EF_P1(nbn, nbe, nba, tri, ar, coord, refa):
 def main():
 
     """fichier du maillage, A MODIFIER"""
-    fichier_msh = "C:\\Users\\retio\\OneDrive\\Bureau\\CHPS706\\Finite-Elements-main\\Maillages\\m4.msh"
+    fichier_msh = "C:\\Users\\Kakugen\\Desktop\\CHPS0706\\Finite-Elements\\Maillages\\m4.msh"
     
     """différents paramètres du maillage"""
     [nbn, nbe, nba, coord, tri, ar, refn, reft, refa]= lit_fichier_msh(fichier_msh)
